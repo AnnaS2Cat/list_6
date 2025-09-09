@@ -1,0 +1,26 @@
+//Implementar uma função tamanho:
+//Receba uma string
+//Retorna alguns caracteres da string
+//int tamanho (char* str);
+//Obviamente, não use a função strlen.
+
+#include <stdio.h>
+#define c 50
+int tamanho(char* a){
+    int count = 0;
+    int i;
+    for (int i = 0; i < c; i++) {
+        if (a[i] == '\0' || a[i] == '\n') {
+            break;  
+        }
+        count=count+1;
+    }
+    return count;
+}
+int main(void){
+    char texto[c];
+    printf("Digite uma string: ");
+    fgets(texto, c , stdin);
+    int tam = tamanho(texto);
+    printf("Tamanho da string: %d", tam);
+}
