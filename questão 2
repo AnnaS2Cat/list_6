@@ -1,1 +1,52 @@
+//Implementar uma função concatena:
+//Receba uma mensagem de destino
+//Receba duas sequências de origem
+//Junta em destino as duas strings de origem (sobrescrevendo o conteúdo de destino, se houver)
+//void concatena (char* d, char* o1, char* o2);
+//A implementação deve usar a função tamanhoda questão 3.
+//Obviamente, não use a função strcat.
 
+#include <stdio.h>
+#include <string.h>
+#define c 50
+int tamanho(char* a){
+    int count = 0;
+    int i;
+    for (int i = 0; i < c; i++) {
+        if (a[i] == '\0' || a[i] == '\n') {
+            break;  
+        }
+        count=count+1;
+    }
+    return count;
+}
+void concatena(char* d, char* o1, char* o2){
+    int i =0;
+    int j =0;
+    while (o1[i] != '\0' && o1[i] != '\n'){
+        d[i]=o1[i]; //eu tô substituindo os valores de destino por o1, se fosse para add, eu usaria int j=0 d[i]=o1[j] e while com o1[j]
+        i=i+1;
+    }
+    d[i]= ' ';//usei pra espaçar as origens
+    i=i+1;//avança uma posição pra começar o novo while
+    while (o2[j] != '\0' && o2[j] != '\n') {
+        d[i] = o2[j]; //i aponta para o fim da string o1 dentro de d (porque já usei i para copiar o1)
+        i=i+1;
+        j=j+1;
+    }
+    d[i] = '\0'; // Add o caractere nulo no final da string destino para eu encerrar a string (necessário)
+}
+int main(void){
+    char origem1[c];
+    char origem2[c];
+    char destino[c];
+    
+    printf("Digite a origem 1: ");
+    fgets(origem1, c, stdin);
+    printf("Digite a origem 2: ");
+    fgets(origem2, c, stdin);
+
+    concatena(destino, origem1, origem2);
+    printf("Resultado do destino: %s \n", destino);
+    printf("Tamanho da string final: %d \n", tamanho(destino));
+}
